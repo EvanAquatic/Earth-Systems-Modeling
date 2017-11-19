@@ -1,5 +1,5 @@
 %clear all; close all; clc
-%%Wave Dominanted Delta for Matlab%%
+%%Wave Dominanted River Delta Dynamics for Matlab%%
 dt=.1;
 dx=1;
 x=0:dx:100;n=length(x);
