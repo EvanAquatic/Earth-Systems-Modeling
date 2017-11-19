@@ -1,0 +1,45 @@
+%clear all; close all; clc
+%%Wave Dominanted Delta for Matlab%%
+dt=.1;
+dx=1;
+x=0:dx:100;n=length(x);
+t=0:dt:100;m=length(t);
+
+K=10;     %diffusity 
+Qin=1;    %sediment supply 
+W=10;     %river width
+D=10;     %ocean depth
+
+Qs=zeros(1,n);
+s=zeros(1,n);
+h=zeros(1,m);
+
+s(1,:);
+
+for j=1:m-1; %j time step counter for shoreline location
+    
+ %if j==25/dt; hold on; plot(x, s,'r','linewidth',2); end
+ %if j==50/dt;hold on; plot(x,s, 'g','linewidth',2); end
+ %if j==75/dt; hold on; plot(x, s,'b','linewidth',2); end
+ %if j==100/dt;hold on; plot(x,s, 'y','linewidth',2); end
+
+    hdot=(Qin-2*Qs(1))/(W*D);
+    h(j+1)=h(j)+dt*hdot ;
+    s(1)=h(j+1);
+    
+    for i=2:n-1; 
+
+     Qs(i)=-K*((s(i)-s(i-1))/(dx)); 
+     Qs(i+1)=-K*((s(i+1)-s(i))/(dx)); 
+     s(i)= s(i)-(dt/D)*((Qs(i+1)-Qs(i)/dx));
+     
+         end
+       end
+       
+%%Plot       
+figure(1)
+plot(x, s,'r','linewidth',2);
+hold on; 
+xlabel('time [years]')
+ylabel('Height [meters]')
+title('Wave height over time')
