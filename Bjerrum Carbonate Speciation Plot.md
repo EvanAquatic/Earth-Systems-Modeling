@@ -5,7 +5,7 @@ R
 
 library(seacarb)
 
-## Plot the bjerrum plot for the carbonate system using the default values
+## Plot the bjerrum plot for the carbonate system; average seawater values
 bjerrum(K1(6.35),K2(10.33),,conc=2.65, main="Polyprotic Acid H2CO3 Speciation",lwd=2) 
 abline(v=-log10(K1(6.35)),col="grey")
 mtext(side=3,at=-log10(K1(6.35)),"pK1")
